@@ -1,0 +1,171 @@
+---
+title: User Profiles
+description: Manage and customize user profiles to showcase talents and connect with collaborators
+---
+
+## Profile Management
+
+User profiles on KKS.im serve as digital portfolios that highlight individual talents, past projects, and areas of expertise. A well-crafted profile increases visibility within the community and attracts potential collaborators. The platform provides comprehensive tools for profile customization and networking.
+
+<Columns cols={3}>
+  <Card title="Personal Branding" icon="user" href="#personal-branding">
+    Showcase your unique skills and achievements.
+  </Card>
+  <Card title="Project Portfolio" icon="folder" href="#project-portfolio">
+    Display your completed and ongoing projects.
+  </Card>
+  <Card title="Networking" icon="users" href="#networking">
+    Connect with like-minded professionals.
+  </Card>
+</Columns>
+
+## Creating and Customizing Profiles
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+    Create your account with a unique username and verified email.
+    
+    ```javascript
+const userData = {
+  username: 'innovator_jane',
+  email: 'jane@example.com',
+  full_name: 'Jane Innovator',
+  bio: 'Passionate about sustainable technology solutions'
+};
+
+const response = await fetch('/api/v1/users', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(userData)
+});
+```
+  </Step>
+  <Step title="Add Profile Details" icon="edit">
+    Complete your profile with skills, experience, and interests.
+  </Step>
+  <Step title="Upload Portfolio" icon="image">
+    Showcase your work with images, links, and descriptions.
+  </Step>
+  <Step title="Set Privacy Settings" icon="lock">
+    Control who can view your profile information.
+  </Step>
+</Steps>
+
+## Profile Sections
+
+<Tabs>
+  <Tab title="Skills & Expertise" icon="star">
+    Highlight your technical and creative abilities.
+    
+    <Expandable title="Skill Categories" default-open="true">
+      - Technical Skills: Programming, design, data analysis
+      - Creative Skills: Writing, art, music, innovation
+      - Business Skills: Marketing, project management, leadership
+    </Expandable>
+    
+    <CodeGroup tabs="Add Skills,Update Skills">
+      ```javascript
+// Add new skills to your profile
+const skillsUpdate = {
+  skills: ['JavaScript', 'UI/UX Design', 'Project Management']
+};
+await fetch('/api/v1/users/me/skills', {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(skillsUpdate)
+});
+```
+      ```javascript
+// Update skill proficiency levels
+const proficiencyUpdate = {
+  'JavaScript': 'expert',
+  'UI/UX Design': 'advanced',
+  'Project Management': 'intermediate'
+};
+await fetch('/api/v1/users/me/skills/proficiency', {
+  method: 'PATCH',
+  body: JSON.stringify(proficiencyUpdate)
+});
+```
+    </CodeGroup>
+  </Tab>
+  <Tab title="Project History" icon="history">
+    Document your past achievements and contributions.
+    
+    <ParamField body="project_title" param-type="string" required="true">
+      Name of the project or achievement.
+    </ParamField>
+    
+    <ParamField body="description" param-type="string" required="true">
+      Detailed description of your role and contributions.
+    </ParamField>
+    
+    <ParamField body="technologies" param-type="array" required="false">
+      List of technologies or tools used.
+    </ParamField>
+  </Tab>
+  <Tab title="Achievements" icon="award">
+    Showcase awards, certifications, and recognitions.
+    
+    <ExpandableGroup>
+      <Expandable title="Adding Achievements" default-open="false">
+        Include hackathons won, certifications earned, or community contributions.
+      </Expandable>
+      <Expandable title="Verification" default-open="false">
+        Verified achievements display special badges on your profile.
+      </Expandable>
+    </ExpandableGroup>
+  </Tab>
+</Tabs>
+
+## Networking Features
+
+<Callout kind="info">Build meaningful connections by endorsing skills and collaborating on projects.</Callout>
+
+<Steps>
+  <Step title="Find Connections" icon="search">
+    Use search filters to find users with complementary skills.
+  </Step>
+  <Step title="Send Connection Requests" icon="user-plus">
+    Send personalized messages when requesting connections.
+  </Step>
+  <Step title="Endorse Skills" icon="thumbs-up">
+    Validate others' skills to build trust in the community.
+  </Step>
+  <Step title="Join Groups" icon="users">
+    Participate in interest-based groups and forums.
+  </Step>
+</Steps>
+
+## Privacy and Visibility Controls
+
+<ResponseField name="profile_visibility" field-type="string" required="true">
+  Public, private, or connections-only visibility settings.
+</ResponseField>
+
+<ResponseField name="contact_info_visibility" field-type="string" required="true">
+  Control who can see your email and contact details.
+</ResponseField>
+
+<Expandable title="Privacy Best Practices" default-open="false">
+  - Start with public profiles to increase visibility
+  - Use connections-only for sensitive information
+  - Regularly review and update privacy settings
+  - Be mindful of sharing personal contact information
+</Expandable>
+
+## Profile Analytics
+
+<Callout kind="tip">Track profile views and engagement to optimize your presence on the platform.</Callout>
+
+<ResponseField name="profile_views" field-type="integer" required="true">
+  Total number of profile visits.
+</ResponseField>
+
+<ResponseField name="connection_requests" field-type="integer" required="true">
+  Number of incoming connection requests.
+</ResponseField>
+
+<ResponseField name="skill_endorsements" field-type="integer" required="true">
+  Count of skill endorsements received.
+</ResponseField>
